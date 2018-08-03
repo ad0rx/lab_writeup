@@ -18,7 +18,7 @@
 
 # HAND EDIT
 set PROJWS  $::env(PROJWS)
-set PROJ_HW_PROJECT_PATH $PROJWS/vivado_project
+set PROJ_HW_PROJECT_PATH $PROJWS/work/vivado_project
 set NUM_CPU 4
 set_param general.maxThreads $NUM_CPU
 
