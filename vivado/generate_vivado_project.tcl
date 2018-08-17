@@ -18,8 +18,9 @@
 
 # HAND EDIT
 set PROJWS  $::env(PROJWS)
+set SUPPORT $::env(SUPPORT)
 set PROJ_HW_PROJECT_PATH $PROJWS/work/vivado_project
-set NUM_CPU 4
+set NUM_CPU 2
 set_param general.maxThreads $NUM_CPU
 
 file mkdir $PROJ_HW_PROJECT_PATH
@@ -86,9 +87,9 @@ update_ip_catalog -rebuild
 set obj [get_filesets sources_1]
 
 # Copy axi_counter_ip over
-file copy "$PROJWS/support/vivado/axi_counter_ip" "$PROJ_HW_PROJECT_PATH/$project_name/minized_petalinux.ip_user_files"
+file copy "$SUPPORT/vivado/axi_counter_ip" "$PROJ_HW_PROJECT_PATH/$project_name/minized_petalinux.ip_user_files"
 
-set files "$PROJWS/support/vivado/wireless_mgr.vhd"
+set files "$SUPPORT/vivado/wireless_mgr.vhd"
 set imported_files [import_files -fileset sources_1 $files]
 # END HAND EDIT
 
@@ -114,21 +115,21 @@ set obj [get_filesets constrs_1]
 
 # HAND EDIT
 # Add/Import constrs file and set constrs file properties
-set file "[file normalize "$PROJWS/support/vivado/minized_LEDs.xdc"]"
+set file "[file normalize "$SUPPORT/vivado/minized_LEDs.xdc"]"
 set file_imported [import_files -fileset constrs_1 $file]
 set file "vivado/minized_LEDs.xdc"
 set file_obj [get_files -of_objects [get_filesets constrs_1] [list "*$file"]]
 set_property -name "file_type" -value "XDC" -objects $file_obj
 
 # Add/Import constrs file and set constrs file properties
-set file "[file normalize "$PROJWS/support/vivado/bitstream_compression_enable.xdc"]"
+set file "[file normalize "$SUPPORT/vivado/bitstream_compression_enable.xdc"]"
 set file_imported [import_files -fileset constrs_1 $file]
 set file "vivado/bitstream_compression_enable.xdc"
 set file_obj [get_files -of_objects [get_filesets constrs_1] [list "*$file"]]
 set_property -name "file_type" -value "XDC" -objects $file_obj
 
 # Add/Import constrs file and set constrs file properties
-set file "[file normalize "$PROJWS/support/vivado/minized_petalinux.xdc"]"
+set file "[file normalize "$SUPPORT/vivado/minized_petalinux.xdc"]"
 set file_imported [import_files -fileset constrs_1 $file]
 set file "vivado/minized_petalinux.xdc"
 set file_obj [get_files -of_objects [get_filesets constrs_1] [list "*$file"]]
@@ -1026,7 +1027,7 @@ update_compile_order -fileset sources_1
 update_compile_order -fileset sources_1
 
 # Setup interfaces SDx
-source $PROJWS/support/vivado/mz_stream_petalinux_pfm.tcl
+source $SUPPORT/vivado/mz_stream_petalinux_pfm.tcl
 
 save_bd_design
 
