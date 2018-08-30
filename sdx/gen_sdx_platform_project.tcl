@@ -34,10 +34,10 @@ platform -name $platform_name -hw "$PROJ_HW_PROJECT_PATH/$platform_name.dsa" -ou
 platform -write
 platform -read "$platform_dir/$platform_name/platform.spr"
 
-system -name {linux2} -display-name {linux} -desc {} -boot "$PROJ_PLNX_PROJECT_PATH/sdx_minized/images/linux/boot"
+system -name {linux2} -display-name {linux} -desc {} -boot "$PROJ_PLNX_PROJECT_PATH/sdx_petalinux/images/linux/boot"
 boot -bif "$PROJ_PLNX_PROJECT_PATH/sdx_minized/images/linux/boot/sdx_pfm.bif"
 
-domain -name linux3 -os linux -proc ps7_cortexa9_0 -display-name "$platform_domain" -runtime cpp -image "$PROJ_PLNX_PROJECT_PATH/sdx_minized/images/linux/image"
+domain -name linux3 -os linux -proc ps7_cortexa9_0 -display-name "$platform_domain" -runtime cpp -image "$PROJ_PLNX_PROJECT_PATH/sdx_petalinux/images/linux/image"
 
 platform -write
 platform -generate
